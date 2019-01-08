@@ -1,3 +1,8 @@
+/**
+ * Police class
+ * extension of Person
+ * implementation of Employee
+ */
 public class Police extends Person implements Employee {
      enum Role
      {
@@ -9,25 +14,37 @@ public class Police extends Person implements Employee {
 
      private Role role;
 
+     /** Police default constructor */
     Police()
     {
         super();
     }
 
+    /**
+     * Pay employee
+     * @see Employee
+     */
     @Override
     public void payEmployee() {
 
     }
 
+    /**
+     * get id number of employee
+     * @return int id number
+     * @see Employee
+     */
     @Override
     public int getId() {
         return 0;
     }
 
+    /** return the role of the police officer */
     public Role getRole() {
         return role;
     }
 
+    /** set the role of the police officer */
     public void setRole(Role role) {
         this.role = role;
     }

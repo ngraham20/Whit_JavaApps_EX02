@@ -1,5 +1,5 @@
 /**
- * CityHall Model Object
+ * CityHall Object
  */
 public class CityHall extends Building {
 }
