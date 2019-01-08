@@ -33,12 +33,16 @@ public class Teacher extends Person implements Employee {
         return 0;
     }
 
-    /** return the grade level that the teacher teaches */
+    /** return the grade level that the teacher teaches
+     * @return grade
+     */
     public int getGrade() {
         return grade;
     }
 
-    /** return the teacher's certification */
+    /** return the teacher's certification
+     * @return cerfif
+     */
     public String getCertif() {
         return certif;
     }

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"Building"},{"p":"<Unnamed>","l":"City"},{"p":"<Unnamed>","l":"CityHall"},{"p":"<Unnamed>","l":"Employee"},{"p":"<Unnamed>","l":"Kid"},{"p":"<Unnamed>","l":"Person"},{"p":"<Unnamed>","l":"Police"},{"p":"<Unnamed>","l":"School"},{"p":"<Unnamed>","l":"Teacher"}]

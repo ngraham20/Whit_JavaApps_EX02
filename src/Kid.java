@@ -11,12 +11,16 @@ public class Kid extends Person {
         super();
     }
 
-    /** returns the Kid's favorite candy */
+    /** returns the Kid's favorite candy
+     * @return favCandy the favorite candy of the kid
+     */
     public String getFavCandy() {
         return favCandy;
     }
 
-    /** sets the Kid's favorite candy */
+    /** sets the Kid's favorite candy
+     * @param favCandy the kid's favorite candy
+     */
     public void setFavCandy(String favCandy) {
         this.favCandy = favCandy;
     }

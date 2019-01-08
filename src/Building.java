@@ -17,17 +17,24 @@ public class Building {
 
     }
 
-    /** returns the name of the building */
+    /** Returns the name of the building
+     * @return The name of the building
+     */
     public String getName() {
         return name;
     }
 
-    /** returns the address of the building */
+    /** Returns the address of the building
+     * @return The address of the building
+     */
     public String getAddress() {
         return address;
     }
 
-    /** returns the occupants of the building */
+    /**
+     * Returns the occupants of the building
+     * @return An ArrayList containing the occupants of the building
+     */
     public ArrayList<Person> getOccupants() {
         return occupants;
     }
@@ -39,8 +46,8 @@ public class Building {
     }
 
     /**
-     * removes a specific occupant from the building
-     * @param occupant the occupant to remove
+     * Removes a specific occupant from the building
+     * @param occupant An occupant to remove from the building
      */
     void removeOccupant(Person occupant)
     {

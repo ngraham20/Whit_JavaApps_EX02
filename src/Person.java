@@ -12,32 +12,47 @@ public abstract class Person {
 
     }
 
-    /** returns the age of the person */
+    /** returns the age of the person
+     * @return age the age of the person
+     */
     public int getAge() {
         return age;
     }
 
-    /** returns the name of the person */
+    /** returns the name of the person
+     * @return name the name of the peson
+     */
     public String getName() {
         return name;
     }
 
-    /** returns the phone number of the person */
+    /** returns the phone number of the person
+     * @return phone
+     */
     public int getPhone() {
         return phone;
     }
 
-    /** sets the name of the person */
+    /**
+     * sets the name of the person
+     * @param name name of the person
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /** sets the age of the person*/
+    /**
+     * sets the age of the person
+     * @param age age of the person
+     */
     public void setAge(int age) {
         this.age = age;
     }
 
-    /** sets the phone number of the person */
+    /**
+     * sets the phone number of the person
+     * @param phone phone number of the person
+     */
     public void setPhone(int phone) {
         this.phone = phone;
     }

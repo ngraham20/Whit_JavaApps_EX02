@@ -39,12 +39,16 @@ public class Police extends Person implements Employee {
         return 0;
     }
 
-    /** return the role of the police officer */
+    /** return the role of the police officer
+     * @return role
+     */
     public Role getRole() {
         return role;
     }
 
-    /** set the role of the police officer */
+    /** set the role of the police officer
+     * @param role the role of the officer
+     */
     public void setRole(Role role) {
         this.role = role;
     }

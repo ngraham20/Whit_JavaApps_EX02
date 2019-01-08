@@ -122,8 +122,8 @@ public class City {
     }
 
     /**
-     * gets an ArrayList of all citizens
-     * @return ArrayList The citizens of the city
+     * Returns all citizens
+     * @return an ArrayList of citizens
      */
     public ArrayList<Person> getCitizens() {
         return citizens;
@@ -138,40 +138,40 @@ public class City {
     }
 
     /**
-     * Gets all buildings within the city as an ArrayList
-     * @return ArrayList
+     * Returns all buildings within the city as an ArrayList
+     * @return an ArrayList containing the buildings in the city
      */
     public ArrayList<Building> getBuildings() {
         return buildings;
     }
 
     /**
-     * sets ArrayList of buildings from an ArrayList
-     * @param buildings This is the ArrayList of buildings
+     * sets the buildings contained in the city
+     * @param buildings the ArrayList of buildings
      */
     public void setBuildings(ArrayList<Building> buildings) {
         this.buildings = buildings;
     }
 
     /**
-     * returns all buildings which are schools
-     * @return ArrayList
+     * Returns all buildings which are schools
+     * @return an ArrayList of buildings
      */
     public ArrayList<Building> getSchools() {
         return schools;
     }
 
     /**
-     * Sets all schools based on outside ArrayList of buildings
-     * @param schools these are all the school in the city
+     * Sets all schools in the city
+     * @param schools all the school in the city
      */
     public void setSchools(ArrayList<Building> schools) {
         this.schools = schools;
     }
 
     /**
-     * gets all citizens currently in a school building
-     * @return ArrayList of people
+     * Returns all citizens currently in a school building
+     * @return an ArrayList of People
      */
     public ArrayList<Person> getSchoolgoers() {
         return schoolgoers;
@@ -179,7 +179,7 @@ public class City {
 
     /**
      * sets list of citizens from an outside ArrayList of people
-     * @param schoolgoers These are all citizens in a school building
+     * @param schoolgoers all citizens in a school building
      */
     public void setSchoolgoers(ArrayList<Person> schoolgoers) {
         this.schoolgoers = schoolgoers;
@@ -187,7 +187,7 @@ public class City {
 
     /**
      * gets all police officers currently inside City Hall
-     * @return cityHallPolice These are all officers inside City Hall
+     * @return all officers inside City Hall
      */
     public ArrayList<Person> getCityHallPolice() {
         return cityHallPolice;
@@ -195,7 +195,7 @@ public class City {
 
     /**
      * sets the List of officers inside City Hall from outside ArrayList of people
-     * @param cityHallPolice list of officers currently inside City Hall
+     * @param cityHallPolice a list of officers currently inside City Hall
      */
     public void setCityHallPolice(ArrayList<Person> cityHallPolice) {
         this.cityHallPolice = cityHallPolice;
