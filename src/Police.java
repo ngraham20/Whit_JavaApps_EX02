@@ -17,6 +17,7 @@ public class Police extends Person implements Employee {
      /** Police default constructor */
     Police()
     {
+         //PT -- default Role? -1
         super();
     }
 
@@ -26,7 +27,7 @@ public class Police extends Person implements Employee {
      */
     @Override
     public void payEmployee() {
-
+          //PT -- gotta do something useful here... -1
     }
 
     /**
