@@ -40,9 +40,10 @@ public class Building {
     }
 
     /** adds an occupant to a building */
+    //PT -- have this return a boolean, in case add (or remove) fails.
     void addOccopant(Person occupant)
     {
-
+        //PT -- maybe add occupant to occupants? -2
     }
 
     /**
