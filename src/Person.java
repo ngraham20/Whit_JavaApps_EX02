@@ -9,7 +9,7 @@ public abstract class Person {
     /** Person default constructor */
     Person()
     {
-
+        //PT -- default for age, phone? -2
     }
 
     /** returns the age of the person
@@ -46,6 +46,7 @@ public abstract class Person {
      * @param age age of the person
      */
     public void setAge(int age) {
+        //PT -- make sure you get a valid age, phone. -2
         this.age = age;
     }
 
