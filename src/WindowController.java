@@ -4,9 +4,9 @@
  */
 
 /**
- * CityController Object
+ * WindowController Object
  * @author Nathaniel Graham
  * @version 1.0
  */
-public class CityController {
+public class WindowController {
 }
