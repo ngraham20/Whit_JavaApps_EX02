@@ -15,12 +15,7 @@ import java.awt.event.ActionListener;
  */
 public class WindowView extends JFrame implements ActionListener {
 
-//    private CityView cityView = new CityView();
-//    private InfoView infoView = new InfoView();
-//    private PersonView personView = new PersonView();
-//    private JPanel city_view = cityView.getContent();
-//    private JPanel building_view = infoView.getContent();
-//    private JPanel person_view = personView.getContent();
+    private CityController controller = new CityController();
 
     private InfoView infoView = new InfoView();
     private CityView cityView = new CityView();
@@ -49,9 +44,13 @@ public class WindowView extends JFrame implements ActionListener {
         this.cards.add(infoView, "Info");
 
         //this.setTitle("Building");
-        this.layout.show(cards, "City");
+        this.layout.show(cards, "Info");
     }
 
+    void init()
+    {
+        controller.createCity();
+    }
 
 
     @Override

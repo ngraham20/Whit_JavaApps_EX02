@@ -6,17 +6,22 @@
 import java.util.ArrayList;
 
 /**
- * WindowController Object
+ * CityController Object
  * @author Nathaniel Graham
  * @version 1.0
  */
-public class WindowController {
+public class CityController {
 
-    private City city = new City();
+    private City city;
 
-    WindowController()
+    CityController()
     {
 
+    }
+
+    void createCity()
+    {
+        city = new City();
     }
 
     void addPersonToBuilding(Building building, Person person)

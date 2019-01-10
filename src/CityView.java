@@ -55,10 +55,9 @@ public class CityView extends JPanel {
 
     private void addBorders()
     {
-        //top_bar.setBorder(BorderFactory.createLineBorder(Color.black));
-        //body.setBorder(BorderFactory.createLineBorder(Color.black));
-        //side_bar.setBorder(BorderFactory.createLineBorder(Color.black));
-        //delete_zone.setBorder(BorderFactory.createLineBorder(Color.black));
+        top_bar.setBorder(BorderFactory.createLineBorder(Color.black));
+        body.setBorder(BorderFactory.createLineBorder(Color.black));
+        person_list.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     }
 
     private void setColors()
