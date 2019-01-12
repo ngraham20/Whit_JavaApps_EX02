@@ -1,7 +1,4 @@
 import javax.swing.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.io.Serializable;
 
 /**
  * Person abstract class Object
@@ -22,13 +19,15 @@ public abstract class Person extends JComponent {
         this.name = name;
         this.age = age;
         this.designation = designation;
-        this.phone = phone;
+
+        if(Long.toString(phone).length() == 7 || Long.toString(phone).length() == 10)
+            this.phone = phone;
     }
 
     /** returns the age of the person
      * @return age the age of the person
      */
-    public int getAge() {
+    int getAge() {
         return age;
     }
 
@@ -42,7 +41,7 @@ public abstract class Person extends JComponent {
     /** returns the phone number of the person
      * @return phone
      */
-    public long getPhone() {
+    long getPhone() {
         return phone;
     }
 
@@ -70,7 +69,7 @@ public abstract class Person extends JComponent {
         this.phone = phone;
     }
 
-    public String getDesignation()
+    String getDesignation()
     {
         return this.designation;
     }
