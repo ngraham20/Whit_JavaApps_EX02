@@ -8,6 +8,7 @@ import java.io.Serializable;
  */
 public abstract class Person extends JComponent {
     private String name;
+    private String designation;
     private int age;
     private int phone;
 
@@ -17,10 +18,11 @@ public abstract class Person extends JComponent {
 
     }
 
-    public Person(String name, int age, int phone)
+    public Person(String name, int age, String designation, int phone)
     {
         this.name = name;
         this.age = age;
+        this.designation = designation;
         this.phone = phone;
     }
 
@@ -67,6 +69,16 @@ public abstract class Person extends JComponent {
      */
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    public String getDesignation()
+    {
+        return this.designation;
+    }
+
+    public void setDesignation(String designation)
+    {
+        this.designation = designation;
     }
 
     @Override

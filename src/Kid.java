@@ -13,7 +13,7 @@ public class Kid extends Person {
 
     Kid(String name, int age)
     {
-        super(name, age, -1);
+        super(name, age, "Kid", -1);
     }
 
     /** returns the Kid's favorite candy

@@ -14,6 +14,7 @@ import java.awt.dnd.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TooManyListenersException;
 import java.util.Vector;
 
@@ -100,6 +101,7 @@ public class WindowView extends JFrame implements ActionListener {
                     DefaultListModel<String> iList = new DefaultListModel<>();
 
                     iList.addElement("NAME: " + person.getName());
+                    iList.addElement("DESIGNATION: " + person.getDesignation());
                     iList.addElement("AGE: " + person.getAge());
 
                     if (person.getPhone() != -1)
