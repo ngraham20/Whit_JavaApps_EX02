@@ -25,7 +25,7 @@ import java.util.Vector;
  * @author Nathaniel Graham
  * @version 1.0
  */
-public class WindowView extends JFrame implements ActionListener {
+public class WindowView extends JFrame {
 
     private CityController controller = new CityController();
 
@@ -63,53 +63,58 @@ public class WindowView extends JFrame implements ActionListener {
         //this.setTitle("Building");
         setView("City");
 
-        testScrolls();
-
         controller = new CityController(this);
+
+        testScrolls();
 
         eventListeners();
     }
 
     private void testScrolls()
     {
-        // --- occupants of a building ---
-        Vector<Person> occupants = new Vector<>();
-        occupants.add(new Kid("Charlie", 5));
-        occupants.add(new Kid("Jameson", 7));
-        occupants.add(new Kid("Lily", 9));
-        occupants.add(new Kid("Susan", 4));
-        occupants.add(new Kid("Matthew", 5));
-        occupants.add(new Kid("Barey", 3));
-        occupants.add(new Kid("Sara", 9));
-        occupants.add(new Kid("Karisa", 3));
-        occupants.add(new Kid("Katie", 5));
-        occupants.add(new Kid("Jack", 7));
-        occupants.add(new Kid("Justin", 9));
-        occupants.add(new Kid("Sally", 4));
-        occupants.add(new Kid("Drew", 5));
-        occupants.add(new Kid("Andrew", 3));
-        occupants.add(new Kid("Juaqin", 9));
-        occupants.add(new Kid("Quill", 3));
-        occupants.add(new Kid("Ali", 5));
-        occupants.add(new Kid("Barb", 7));
-        occupants.add(new Kid("Chunk", 9));
-        occupants.add(new Kid("Mikey", 4));
-        occupants.add(new Kid("Data", 5));
-        occupants.add(new Kid("Smalls", 3));
-        occupants.add(new Kid("Thomas", 9));
-        occupants.add(new Kid("Nate", 3));
+        // --- citizens of a building ---
+        Vector<Person> citizens = new Vector<>();
+        citizens.add(new Kid("Charlie", 5));
+        citizens.add(new Kid("Jameson", 7));
+        citizens.add(new Kid("Lily", 9));
+        citizens.add(new Kid("Susan", 4));
+        citizens.add(new Kid("Matthew", 5));
+        citizens.add(new Kid("Barey", 3));
+        citizens.add(new Kid("Sara", 9));
+        citizens.add(new Kid("Karisa", 3));
+        citizens.add(new Kid("Katie", 5));
+        citizens.add(new Kid("Jack", 7));
+        citizens.add(new Kid("Justin", 9));
+        citizens.add(new Kid("Sally", 4));
+        citizens.add(new Kid("Drew", 5));
+        citizens.add(new Kid("Andrew", 3));
+        citizens.add(new Kid("Juaqin", 9));
+        citizens.add(new Kid("Quill", 3));
+        citizens.add(new Kid("Ali", 5));
+        citizens.add(new Kid("Barb", 7));
+        citizens.add(new Kid("Chunk", 9));
+        citizens.add(new Kid("Mikey", 4));
+        citizens.add(new Kid("Data", 5));
+        citizens.add(new Kid("Smalls", 3));
+        citizens.add(new Kid("Thomas", 9));
+        citizens.add(new Kid("Nate", 3));
+        citizens.add(new Police("Bruce", 35, Police.Role.Sargent, 4083902198L));
 
-        //infoView.populatePersonList(occupants);
+        //infoView.populatePersonList(citizens);
 
         Vector<Building> buildings = new Vector<>();
         buildings.add(new GenericBuilding("Holmes", "221 Baker St."));
         buildings.add(new GenericBuilding("Graham", "240 N. 5th St."));
         buildings.add(new School("Whitworth University", "300 W. Hawthorne Rd."));
+        buildings.add(new CityHall("City Hall", "123 N. 1st St."));
 
-        buildings.elementAt(2).addOccupants(occupants);
+        controller.setBuildings(buildings);
+        controller.setCitizens(citizens);
+
+        //buildings.elementAt(2).addOccupants(citizens);
 
         cityView.populateBuildingList(buildings);
-        cityView.populatePersonList(occupants);
+        cityView.populatePersonList(citizens);
 
     }
 
@@ -156,9 +161,15 @@ public class WindowView extends JFrame implements ActionListener {
                         DefaultListModel<Person> occupants = (DefaultListModel) infoView.getSide_bar_list().getModel();
                         occupants.removeElement(person);
                         System.out.println("Person removed: " + person.toString());
+
+                        // add person back to cityView's list
+                        DefaultListModel<Person> citizens = (DefaultListModel) cityView.getPerson_list().getModel();
+                        citizens.addElement(person);
                     }
 
-                    // TODO cityController should now remove that person from the building information too
+                    Building building = cityView.getBuilding_list().getSelectedValue();
+                    controller.removePersonFromBuilding(building, person);
+
                 }
             });
         } catch (TooManyListenersException e) {
@@ -188,14 +199,7 @@ public class WindowView extends JFrame implements ActionListener {
 
                         infoView.getInfoPanel().setModel(iList);
                     }
-
-                    // TODO implement with controller too
                 }
-            }
-
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                super.mouseDragged(e);
             }
         });
 
@@ -206,19 +210,106 @@ public class WindowView extends JFrame implements ActionListener {
         cityView.getPerson_list().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // TODO open info panel on person
-            }
+                JList list = (JList) e.getSource();
 
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                // TODO register who's been dragged with a selection event
+                if (e.getClickCount() == 1)
+                {
+                    Person person = cityView.getPerson_list().getSelectedValue();
+                    if (person != null) {
+                        System.out.println("Person Selected: " + person.toString());
+
+                        setView("Info");
+
+                        DefaultListModel<String> iList = new DefaultListModel<>();
+
+                        iList.addElement("NAME: " + person.getName());
+                        iList.addElement("DESIGNATION: " + person.getDesignation());
+
+                        if (person instanceof Police)
+                        {
+                            iList.addElement("ROLE: " + ((Police) person).getRole());
+                        }
+
+                        iList.addElement("AGE: " + person.getAge());
+
+                        if (person.getPhone() != -1) {
+                            iList.addElement("PHONE: " + person.getPhone());
+                        }
+
+                        infoView.getInfoPanel().setModel(iList);
+                        infoView.getSide_bar_list().setModel(new DefaultListModel<>());
+                    }
+                }
             }
         });
 
         cityView.getBuilding_list().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // TODO open info panel on building
+                JList list = (JList) e.getSource();
+
+                if (e.getClickCount() == 1)
+                {
+                    Building building = cityView.getBuilding_list().getSelectedValue();
+                    if (building != null) {
+                        System.out.println("Building Selected: " + building.toString());
+
+                        setView("Info");
+
+                        DefaultListModel<String> iList = new DefaultListModel<>();
+
+                        iList.addElement("NAME: " + building.getName());
+                        iList.addElement("DESIGNATION: " + building.getDesignation());
+                        iList.addElement("ADDRESS: " + building.getAddress());
+
+                        if(building instanceof School)
+                        {
+                            int numTeachers = 0;
+                            int numKids = 0;
+                            for (Person person : building.getOccupants())
+                            {
+                                if (person instanceof Teacher)
+                                {
+                                    numTeachers++;
+                                }
+                                if (person instanceof Kid)
+                                {
+                                    numKids++;
+                                }
+                            }
+                            iList.addElement("NUMBER OF TEACHERS: " + Integer.toString(numTeachers));
+                            iList.addElement("NUMBER OF KIDS: " + Integer.toString(numKids));
+                        }
+
+                        if(building instanceof CityHall)
+                        {
+                            // list how many officers
+                            int numOfficers = 0;
+                            for(Person person : building.getOccupants())
+                            {
+                                if (person instanceof Police)
+                                {
+                                    numOfficers++;
+                                }
+                            }
+                            iList.addElement("NUMBER OF OFFICERS: " + Integer.toString(numOfficers));
+                        }
+
+                        infoView.getInfoPanel().setModel(iList);
+
+                        DefaultListModel<Person> pList = new DefaultListModel<>();
+
+                        if (building.getOccupants() != null)
+                        {
+                            for(Person p : building.getOccupants())
+                            {
+                                pList.addElement(p);
+                            }
+                        }
+
+                        infoView.getSide_bar_list().setModel(pList);
+                    }
+                }
             }
         });
 
@@ -246,8 +337,22 @@ public class WindowView extends JFrame implements ActionListener {
 
                 @Override
                 public void drop(DropTargetDropEvent dtde) {
-                    // TODO remove person from person list
-                    // TODO add person to building occupancy
+
+                    // the item dropped has been selected
+                    Person person = cityView.getPerson_list().getSelectedValue();
+
+                    if (person != null)
+                    {
+                        DefaultListModel<Person> occupants = (DefaultListModel) cityView.getPerson_list().getModel();
+                        occupants.removeElement(person);
+                        System.out.println("Person removed: " + person.toString());
+                    }
+
+                    // add person to building list
+                    int index = cityView.getBuilding_list().locationToIndex(dtde.getLocation());
+
+                    Building building = controller.getCity().getBuildings().elementAt(index);
+                    controller.addPersonToBuilding(building, person);
                 }
             });
         } catch (TooManyListenersException e) {
@@ -267,11 +372,5 @@ public class WindowView extends JFrame implements ActionListener {
     void init()
     {
         controller.createCity();
-    }
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

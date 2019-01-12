@@ -16,6 +16,6 @@ public class GenericBuilding extends Building {
      * @param address
      */
     GenericBuilding(String name, String address) {
-        super(name, address);
+        super(name, address, "Generic Building");
     }
 }

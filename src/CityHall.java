@@ -9,6 +9,6 @@ public class CityHall extends Building {
      * @param address
      */
     CityHall(String name, String address) {
-        super(name, address);
+        super(name, address, "City Hall");
     }
 }

@@ -4,7 +4,25 @@
  * implementation of Employee
  */
 public class Police extends Person implements Employee {
-     enum Role
+    /**
+     * Person default constructor
+     *
+     * @param name
+     * @param age
+     * @param designation
+     * @param phone
+     */
+    public Police(String name, int age, String designation, int phone) {
+        super(name, age, designation, phone);
+    }
+
+    public Police(String name, int age, Role role, long phone)
+    {
+        super(name, age, "Police Officer", phone);
+        this.role = role;
+    }
+
+    enum Role
      {
          Patrol,
          Sargent,
@@ -14,11 +32,6 @@ public class Police extends Person implements Employee {
 
      private Role role;
 
-     /** Police default constructor */
-    Police()
-    {
-        super();
-    }
 
     /**
      * Pay employee

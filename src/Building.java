@@ -9,13 +9,15 @@ public abstract class Building {
 
     private String name;
     private String address;
-    private Vector<Person> occupants;
+    private String designation;
+    private Vector<Person> occupants = new Vector<>();
 
     /** Default constructor */
-    Building(String name, String address)
+    Building(String name, String address, String designation)
     {
         this.name = name;
         this.address = address;
+        this.designation = designation;
     }
 
     /** Returns the name of the building
@@ -38,6 +40,11 @@ public abstract class Building {
      */
     public Vector<Person> getOccupants() {
         return occupants;
+    }
+
+    public String getDesignation()
+    {
+        return this.designation;
     }
 
     /** adds an occupant to a building */

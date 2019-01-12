@@ -78,4 +78,18 @@ public class CityController {
             citizens.remove(person);
         }
     }
+
+    public void setCitizens(Vector<Person> citizens)
+    {
+        this.city.setCitizens(citizens);
+    }
+
+    public void setBuildings(Vector<Building> buildings)
+    {
+        this.city.setBuildings(buildings);
+    }
+
+    public City getCity() {
+        return city;
+    }
 }

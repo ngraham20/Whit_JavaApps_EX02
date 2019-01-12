@@ -10,6 +10,6 @@ public class School extends Building {
      * @param address
      */
     School(String name, String address) {
-        super(name, address);
+        super(name, address, "School");
     }
 }

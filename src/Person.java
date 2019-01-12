@@ -10,15 +10,14 @@ public abstract class Person extends JComponent {
     private String name;
     private String designation;
     private int age;
-    private int phone = -1;
+    private long phone = -1;
 
     /** Person default constructor */
     Person()
-    {
+    {}
 
-    }
 
-    public Person(String name, int age, String designation, int phone)
+    public Person(String name, int age, String designation, long phone)
     {
         this.name = name;
         this.age = age;
@@ -43,7 +42,7 @@ public abstract class Person extends JComponent {
     /** returns the phone number of the person
      * @return phone
      */
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 

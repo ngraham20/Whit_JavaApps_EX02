@@ -4,12 +4,12 @@ import java.util.Vector;
  *  City class contains information regarding the citizens of the city and all buildings held within
  */
 public class City {
-    private Vector<Person> citizens;
-    private Vector<Building> buildings;
-    private Vector<Building> schools;
+    private Vector<Person> citizens = new Vector<>();
+    private Vector<Building> buildings = new Vector<>();
+    private Vector<Building> schools = new Vector<>();
 
-    private Vector<Person> schoolgoers;
-    private Vector<Person> cityHallPolice;
+    private Vector<Person> schoolgoers = new Vector<>();
+    private Vector<Person> cityHallPolice = new Vector<>();
 
     /**
      *  Default constructor for the city

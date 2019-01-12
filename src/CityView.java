@@ -19,8 +19,8 @@ public class CityView extends JPanel {
 
     private JPanel top_bar = new JPanel();
     private JPanel body = new JPanel();
-    private JList building_list = new JList();
-    private JList person_list = new JList();
+    private JList<Building> building_list = new JList<>();
+    private JList<Person> person_list = new JList<>();
     private JScrollPane leftScroll;
     private JScrollPane rightScroll;
     private JSplitPane splitPane;
@@ -114,11 +114,11 @@ public class CityView extends JPanel {
         return body;
     }
 
-    public JList getBuilding_list() {
+    public JList<Building> getBuilding_list() {
         return building_list;
     }
 
-    public JList getPerson_list() {
+    public JList<Person> getPerson_list() {
         return person_list;
     }
 }
