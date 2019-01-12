@@ -3,7 +3,8 @@
  * Package: PACKAGE_NAME
  */
 
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.Vector;
 
 /**
  * CityController Object
@@ -13,10 +14,17 @@ import java.util.ArrayList;
 public class CityController {
 
     private City city;
+    private WindowView windowView;
 
     CityController()
     {
 
+    }
+
+    CityController(WindowView context)
+    {
+        this.windowView = context;
+        city = new City();
     }
 
     void createCity()
@@ -24,9 +32,9 @@ public class CityController {
         city = new City();
     }
 
-    void addPersonToBuilding(Building building, Person person)
+    public void addPersonToBuilding(Building building, Person person)
     {
-        ArrayList<Building> buildings = city.getBuildings();
+        Vector<Building> buildings = city.getBuildings();
         int index = buildings.indexOf(building);
         if (index != 1)
         {
@@ -37,8 +45,8 @@ public class CityController {
 
     void removePersonFromBuilding(Building building, Person person)
     {
-        ArrayList<Building> buildings = city.getBuildings();
-        ArrayList<Person> persons;
+        Vector<Building> buildings = city.getBuildings();
+        Vector<Person> persons;
         int index = buildings.indexOf(building);
         if (index != -1)
         {
@@ -55,7 +63,7 @@ public class CityController {
 
     void birthPerson()
     {
-        ArrayList<Person> citizens = city.getCitizens();
+        Vector<Person> citizens = city.getCitizens();
 
         // code could go here to factory create a random type of person
         citizens.add(new GenericPerson());
@@ -63,13 +71,11 @@ public class CityController {
 
     void killPerson(Person person)
     {
-        ArrayList<Person> citizens = city.getCitizens();
+        Vector<Person> citizens = city.getCitizens();
         int index = citizens.indexOf(person);
         if (index != -1)
         {
             citizens.remove(person);
         }
     }
-
-
 }

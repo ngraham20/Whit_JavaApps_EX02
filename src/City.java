@@ -1,15 +1,15 @@
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  *  City class contains information regarding the citizens of the city and all buildings held within
  */
 public class City {
-    private ArrayList<Person> citizens;
-    private ArrayList<Building> buildings;
-    private ArrayList<Building> schools;
+    private Vector<Person> citizens;
+    private Vector<Building> buildings;
+    private Vector<Building> schools;
 
-    private ArrayList<Person> schoolgoers;
-    private ArrayList<Person> cityHallPolice;
+    private Vector<Person> schoolgoers;
+    private Vector<Person> cityHallPolice;
 
     /**
      *  Default constructor for the city
@@ -50,7 +50,7 @@ public class City {
      */
     void updateOccupancy()
     {
-        ArrayList<Person> tempSchoolgoers = new ArrayList<>();
+        Vector<Person> tempSchoolgoers = new Vector<>();
         for(Building building : buildings)
         {
             if (building instanceof School)
@@ -70,7 +70,7 @@ public class City {
      */
     void updateBuildings()
     {
-        ArrayList<Building> temp = new ArrayList<>();
+        Vector<Building> temp = new Vector<>();
         for(Building building: buildings)
         {
             if(building instanceof School)
@@ -123,41 +123,41 @@ public class City {
 
     /**
      * Returns all citizens
-     * @return an ArrayList of citizens
+     * @return an Vector of citizens
      */
-    public ArrayList<Person> getCitizens() {
+    public Vector<Person> getCitizens() {
         return citizens;
     }
 
     /**
-     * Sets the citizens list to an ArrayList
+     * Sets the citizens list to an Vector
      * @param citizens: the citizens of the city
      */
-    public void setCitizens(ArrayList<Person> citizens) {
+    public void setCitizens(Vector<Person> citizens) {
         this.citizens = citizens;
     }
 
     /**
-     * Returns all buildings within the city as an ArrayList
-     * @return an ArrayList containing the buildings in the city
+     * Returns all buildings within the city as an Vector
+     * @return an Vector containing the buildings in the city
      */
-    public ArrayList<Building> getBuildings() {
+    public Vector<Building> getBuildings() {
         return buildings;
     }
 
     /**
      * sets the buildings contained in the city
-     * @param buildings the ArrayList of buildings
+     * @param buildings the Vector of buildings
      */
-    public void setBuildings(ArrayList<Building> buildings) {
+    public void setBuildings(Vector<Building> buildings) {
         this.buildings = buildings;
     }
 
     /**
      * Returns all buildings which are schools
-     * @return an ArrayList of buildings
+     * @return an Vector of buildings
      */
-    public ArrayList<Building> getSchools() {
+    public Vector<Building> getSchools() {
         return schools;
     }
 
@@ -165,23 +165,23 @@ public class City {
      * Sets all schools in the city
      * @param schools all the school in the city
      */
-    public void setSchools(ArrayList<Building> schools) {
+    public void setSchools(Vector<Building> schools) {
         this.schools = schools;
     }
 
     /**
      * Returns all citizens currently in a school building
-     * @return an ArrayList of People
+     * @return an Vector of People
      */
-    public ArrayList<Person> getSchoolgoers() {
+    public Vector<Person> getSchoolgoers() {
         return schoolgoers;
     }
 
     /**
-     * sets list of citizens from an outside ArrayList of people
+     * sets list of citizens from an outside Vector of people
      * @param schoolgoers all citizens in a school building
      */
-    public void setSchoolgoers(ArrayList<Person> schoolgoers) {
+    public void setSchoolgoers(Vector<Person> schoolgoers) {
         this.schoolgoers = schoolgoers;
     }
 
@@ -189,15 +189,15 @@ public class City {
      * gets all police officers currently inside City Hall
      * @return all officers inside City Hall
      */
-    public ArrayList<Person> getCityHallPolice() {
+    public Vector<Person> getCityHallPolice() {
         return cityHallPolice;
     }
 
     /**
-     * sets the List of officers inside City Hall from outside ArrayList of people
+     * sets the List of officers inside City Hall from outside Vector of people
      * @param cityHallPolice a list of officers currently inside City Hall
      */
-    public void setCityHallPolice(ArrayList<Person> cityHallPolice) {
+    public void setCityHallPolice(Vector<Person> cityHallPolice) {
         this.cityHallPolice = cityHallPolice;
     }
 }

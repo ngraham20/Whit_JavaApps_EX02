@@ -4,8 +4,12 @@
  */
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.dnd.DropTarget;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+import java.util.Vector;
 
 /**
  * InfoView Object
@@ -17,13 +21,13 @@ public class InfoView extends JPanel {
     private JPanel top_bar = new JPanel();
     private JPanel body = new JPanel();
     private JPanel side_bar = new JPanel();
-    private JList side_bar_list = new JList();
+    private JList<Person> side_bar_list = new JList<>();
     private JPanel delete_zone = new JPanel();
     private JLabel del_zone_text = new JLabel("Remove", SwingConstants.CENTER);
     private JButton back_button = new JButton("Back");
-    private JList info = new JList();
+    private JList<String> info = new JList<>();
 
-    public InfoView()
+    InfoView()
     {
         this.setLayout(new BorderLayout());
         init();
@@ -41,14 +45,17 @@ public class InfoView extends JPanel {
         this.add(body, BorderLayout.CENTER);
         body.add(side_bar, BorderLayout.EAST);
         body.add(info, BorderLayout.CENTER);
-        side_bar.add(side_bar_list, BorderLayout.NORTH);
+        side_bar.add(side_bar_list, BorderLayout.CENTER);
         side_bar.add(delete_zone, BorderLayout.SOUTH);
         top_bar.add(back_button, BorderLayout.WEST);
         delete_zone.add(del_zone_text);
+
+        side_bar_list.setDragEnabled(true);
+        delete_zone.setDropTarget(new DropTarget());
+
         addBorders();
         setColors();
         setSizes();
-
     }
 
     private void addBorders()
@@ -65,15 +72,25 @@ public class InfoView extends JPanel {
         body.setBackground(Color.ORANGE);
         side_bar.setBackground(Color.MAGENTA);
         delete_zone.setBackground(Color.RED);
-        info.setBackground(Color.GREEN);
+        //info.setBackground(Color.GREEN);
     }
 
     private void setSizes()
     {
         top_bar.setPreferredSize(new Dimension(-1, 30));
         side_bar.setPreferredSize(new Dimension(100, -1));
+        side_bar_list.setPreferredSize(new Dimension(100,-1));
         delete_zone.setPreferredSize(new Dimension(-1, 55));
         back_button.setPreferredSize(new Dimension(75, -1));
+    }
+
+    public void populatePersonList(Vector<Person> occupants)
+    {
+        DefaultListModel<Person> lm = new DefaultListModel<>();
+        for (Person p : occupants) {
+            lm.addElement(p);
+        }
+        side_bar_list.setModel(lm);
     }
 
     public JPanel getTop_bar() {
@@ -88,7 +105,7 @@ public class InfoView extends JPanel {
         return side_bar;
     }
 
-    public JList getSide_bar_list() {
+    public JList<Person> getSide_bar_list() {
         return side_bar_list;
     }
 
@@ -104,7 +121,7 @@ public class InfoView extends JPanel {
         return back_button;
     }
 
-    public JList getInfo() {
+    public JList getInfoPanel() {
         return info;
     }
 }

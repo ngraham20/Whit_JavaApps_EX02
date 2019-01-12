@@ -11,6 +11,11 @@ public class Kid extends Person {
         super();
     }
 
+    Kid(String name, int age)
+    {
+        super(name, age, -1);
+    }
+
     /** returns the Kid's favorite candy
      * @return favCandy the favorite candy of the kid
      */

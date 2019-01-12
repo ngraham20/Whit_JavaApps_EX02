@@ -6,6 +6,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * CityView Object
@@ -51,6 +52,16 @@ public class CityView extends JPanel {
         setColors();
         setSizes();
 
+    }
+
+    public void populatePersonList(ArrayList<Person> citizens)
+    {
+        // this will populate the jlist with person buttons linking to info on the clicked person
+    }
+
+    public void populateBuildingList(ArrayList<Building> buildings)
+    {
+        // this will populate the jlist with building buttons linking to info on the clicked building
     }
 
     private void addBorders()

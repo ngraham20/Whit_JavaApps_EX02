@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Building Object
@@ -9,7 +9,7 @@ public abstract class Building {
 
     private String name;
     private String address;
-    private ArrayList<Person> occupants;
+    private Vector<Person> occupants;
 
     /** Default constructor */
     Building()
@@ -33,9 +33,9 @@ public abstract class Building {
 
     /**
      * Returns the occupants of the building
-     * @return An ArrayList containing the occupants of the building
+     * @return An Vector containing the occupants of the building
      */
-    public ArrayList<Person> getOccupants() {
+    public Vector<Person> getOccupants() {
         return occupants;
     }
 
