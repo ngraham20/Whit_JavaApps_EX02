@@ -10,7 +10,7 @@ public abstract class Person extends JComponent {
     private String name;
     private String designation;
     private int age;
-    private int phone;
+    private int phone = -1;
 
     /** Person default constructor */
     Person()

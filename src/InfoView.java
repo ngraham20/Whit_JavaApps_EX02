@@ -26,6 +26,7 @@ public class InfoView extends JPanel {
     private JLabel del_zone_text = new JLabel("Remove", SwingConstants.CENTER);
     private JButton back_button = new JButton("Back");
     private JList<String> info = new JList<>();
+    private JScrollPane scrollPane;
 
     InfoView()
     {
@@ -40,12 +41,16 @@ public class InfoView extends JPanel {
         top_bar.setLayout(new BorderLayout());
         delete_zone.setLayout(new BorderLayout());
 
+        scrollPane = new JScrollPane(side_bar_list,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
 
         this.add(top_bar, BorderLayout.NORTH);
         this.add(body, BorderLayout.CENTER);
         body.add(side_bar, BorderLayout.EAST);
         body.add(info, BorderLayout.CENTER);
-        side_bar.add(side_bar_list, BorderLayout.CENTER);
+        side_bar.add(scrollPane, BorderLayout.CENTER);
         side_bar.add(delete_zone, BorderLayout.SOUTH);
         top_bar.add(back_button, BorderLayout.WEST);
         delete_zone.add(del_zone_text);
@@ -79,7 +84,6 @@ public class InfoView extends JPanel {
     {
         top_bar.setPreferredSize(new Dimension(-1, 30));
         side_bar.setPreferredSize(new Dimension(100, -1));
-        side_bar_list.setPreferredSize(new Dimension(100,-1));
         delete_zone.setPreferredSize(new Dimension(-1, 55));
         back_button.setPreferredSize(new Dimension(75, -1));
     }

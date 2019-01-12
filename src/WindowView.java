@@ -75,6 +75,22 @@ public class WindowView extends JFrame implements ActionListener {
         occupants.add(new Kid("Barey", 3));
         occupants.add(new Kid("Sara", 9));
         occupants.add(new Kid("Karisa", 3));
+        occupants.add(new Kid("Katie", 5));
+        occupants.add(new Kid("Jack", 7));
+        occupants.add(new Kid("Justin", 9));
+        occupants.add(new Kid("Sally", 4));
+        occupants.add(new Kid("Drew", 5));
+        occupants.add(new Kid("Andrew", 3));
+        occupants.add(new Kid("Juaqin", 9));
+        occupants.add(new Kid("Quill", 3));
+        occupants.add(new Kid("Ali", 5));
+        occupants.add(new Kid("Barb", 7));
+        occupants.add(new Kid("Chunk", 9));
+        occupants.add(new Kid("Mikey", 4));
+        occupants.add(new Kid("Data", 5));
+        occupants.add(new Kid("Smalls", 3));
+        occupants.add(new Kid("Thomas", 9));
+        occupants.add(new Kid("Nate", 3));
 
         infoView.populatePersonList(occupants);
 
@@ -96,20 +112,21 @@ public class WindowView extends JFrame implements ActionListener {
                 if (!e.getValueIsAdjusting())
                 {
                     Person person = infoView.getSide_bar_list().getSelectedValue();
-                    System.out.println("Person Selected: " + person.toString());
+                    if (person != null) {
+                        System.out.println("Person Selected: " + person.toString());
 
-                    DefaultListModel<String> iList = new DefaultListModel<>();
+                        DefaultListModel<String> iList = new DefaultListModel<>();
 
-                    iList.addElement("NAME: " + person.getName());
-                    iList.addElement("DESIGNATION: " + person.getDesignation());
-                    iList.addElement("AGE: " + person.getAge());
+                        iList.addElement("NAME: " + person.getName());
+                        iList.addElement("DESIGNATION: " + person.getDesignation());
+                        iList.addElement("AGE: " + person.getAge());
 
-                    if (person.getPhone() != -1)
-                    {
-                        iList.addElement("PHONE: " + person.getPhone());
+                        if (person.getPhone() != -1) {
+                            iList.addElement("PHONE: " + person.getPhone());
+                        }
+
+                        infoView.getInfoPanel().setModel(iList);
                     }
-
-                    infoView.getInfoPanel().setModel(iList);
 
                     // TODO add more info as needed
                 }
@@ -145,6 +162,8 @@ public class WindowView extends JFrame implements ActionListener {
 
                     if (person != null)
                     {
+                        DefaultListModel<Person> occupants = (DefaultListModel) infoView.getSide_bar_list().getModel();
+                        occupants.removeElement(person);
                         System.out.println("Person removed: " + person.toString());
                     }
 
