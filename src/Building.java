@@ -12,9 +12,10 @@ public abstract class Building {
     private Vector<Person> occupants;
 
     /** Default constructor */
-    Building()
+    Building(String name, String address)
     {
-
+        this.name = name;
+        this.address = address;
     }
 
     /** Returns the name of the building
@@ -40,9 +41,14 @@ public abstract class Building {
     }
 
     /** adds an occupant to a building */
-    void addOccopant(Person occupant)
+    void addOccupant(Person occupant)
     {
 
+    }
+
+    void addOccupants(Vector<Person> occupants)
+    {
+        this.occupants = occupants;
     }
 
     /**
@@ -52,5 +58,10 @@ public abstract class Building {
     void removeOccupant(Person occupant)
     {
 
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

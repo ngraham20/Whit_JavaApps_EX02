@@ -9,4 +9,13 @@
  * @version 1.0
  */
 public class GenericBuilding extends Building {
+    /**
+     * Default constructor
+     *
+     * @param name
+     * @param address
+     */
+    GenericBuilding(String name, String address) {
+        super(name, address);
+    }
 }

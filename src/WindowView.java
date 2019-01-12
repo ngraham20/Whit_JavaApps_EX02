@@ -13,6 +13,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TooManyListenersException;
@@ -59,13 +61,18 @@ public class WindowView extends JFrame implements ActionListener {
         this.cards.add(infoView, "Info");
 
         //this.setTitle("Building");
-        setView("Info");
+        setView("City");
+
+        testScrolls();
 
         controller = new CityController(this);
 
+        eventListeners();
+    }
 
-        // create random info panel with occupants
-
+    private void testScrolls()
+    {
+        // --- occupants of a building ---
         Vector<Person> occupants = new Vector<>();
         occupants.add(new Kid("Charlie", 5));
         occupants.add(new Kid("Jameson", 7));
@@ -92,44 +99,28 @@ public class WindowView extends JFrame implements ActionListener {
         occupants.add(new Kid("Thomas", 9));
         occupants.add(new Kid("Nate", 3));
 
-        infoView.populatePersonList(occupants);
+        //infoView.populatePersonList(occupants);
 
-        eventListeners();
+        Vector<Building> buildings = new Vector<>();
+        buildings.add(new GenericBuilding("Holmes", "221 Baker St."));
+        buildings.add(new GenericBuilding("Graham", "240 N. 5th St."));
+        buildings.add(new School("Whitworth University", "300 W. Hawthorne Rd."));
+
+        buildings.elementAt(2).addOccupants(occupants);
+
+        cityView.populateBuildingList(buildings);
+        cityView.populatePersonList(occupants);
+
     }
 
     private void eventListeners()
     {
+        // --- INFO VIEW BEGIN ---
+
         infoView.getBack_button().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setView("City");
-            }
-        });
-
-        infoView.getSide_bar_list().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting())
-                {
-                    Person person = infoView.getSide_bar_list().getSelectedValue();
-                    if (person != null) {
-                        System.out.println("Person Selected: " + person.toString());
-
-                        DefaultListModel<String> iList = new DefaultListModel<>();
-
-                        iList.addElement("NAME: " + person.getName());
-                        iList.addElement("DESIGNATION: " + person.getDesignation());
-                        iList.addElement("AGE: " + person.getAge());
-
-                        if (person.getPhone() != -1) {
-                            iList.addElement("PHONE: " + person.getPhone());
-                        }
-
-                        infoView.getInfoPanel().setModel(iList);
-                    }
-
-                    // TODO add more info as needed
-                }
             }
         });
 
@@ -167,12 +158,103 @@ public class WindowView extends JFrame implements ActionListener {
                         System.out.println("Person removed: " + person.toString());
                     }
 
-                    // TODO finish removal
+                    // TODO cityController should now remove that person from the building information too
                 }
             });
         } catch (TooManyListenersException e) {
             e.printStackTrace();
         }
+
+        infoView.getSide_bar_list().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JList list = (JList) e.getSource();
+
+                if (e.getClickCount() == 1)
+                {
+                    Person person = infoView.getSide_bar_list().getSelectedValue();
+                    if (person != null) {
+                        System.out.println("Person Selected: " + person.toString());
+
+                        DefaultListModel<String> iList = new DefaultListModel<>();
+
+                        iList.addElement("NAME: " + person.getName());
+                        iList.addElement("DESIGNATION: " + person.getDesignation());
+                        iList.addElement("AGE: " + person.getAge());
+
+                        if (person.getPhone() != -1) {
+                            iList.addElement("PHONE: " + person.getPhone());
+                        }
+
+                        infoView.getInfoPanel().setModel(iList);
+                    }
+
+                    // TODO implement with controller too
+                }
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+            }
+        });
+
+        // --- INFO VIEW END ---
+
+        // --- CITY VIEW BEGIN ---
+
+        cityView.getPerson_list().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO open info panel on person
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                // TODO register who's been dragged with a selection event
+            }
+        });
+
+        cityView.getBuilding_list().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // TODO open info panel on building
+            }
+        });
+
+        try {
+            cityView.getBuilding_list().getDropTarget().addDropTargetListener(new DropTargetListener() {
+                @Override
+                public void dragEnter(DropTargetDragEvent dtde) {
+
+                }
+
+                @Override
+                public void dragOver(DropTargetDragEvent dtde) {
+
+                }
+
+                @Override
+                public void dropActionChanged(DropTargetDragEvent dtde) {
+
+                }
+
+                @Override
+                public void dragExit(DropTargetEvent dte) {
+
+                }
+
+                @Override
+                public void drop(DropTargetDropEvent dtde) {
+                    // TODO remove person from person list
+                    // TODO add person to building occupancy
+                }
+            });
+        } catch (TooManyListenersException e) {
+            e.printStackTrace();
+        }
+
+        // --- CITY VIEW END ---
     }
 
     void setView(String view)
