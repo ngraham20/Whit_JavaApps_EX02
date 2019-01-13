@@ -28,12 +28,14 @@ public class InfoView extends JPanel {
     private JList<String> info = new JList<>();
     private JScrollPane scrollPane;
 
+    /** Default constructor */
     InfoView()
     {
         this.setLayout(new BorderLayout());
         init();
     }
 
+    /** Initialize the variables and member objects */
     private void init()
     {
         body.setLayout(new BorderLayout());
@@ -63,6 +65,7 @@ public class InfoView extends JPanel {
         setSizes();
     }
 
+    /** Adds borders to the JComponents */
     private void addBorders()
     {
         top_bar.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -71,6 +74,7 @@ public class InfoView extends JPanel {
         delete_zone.setBorder(BorderFactory.createLineBorder(Color.black));
     }
 
+    /** Sets the colors of the JComponents */
     private void setColors()
     {
         top_bar.setBackground(Color.CYAN);
@@ -80,14 +84,19 @@ public class InfoView extends JPanel {
         //info.setBackground(Color.GREEN);
     }
 
+    /** Sets the sizes of the JComponents */
     private void setSizes()
     {
         top_bar.setPreferredSize(new Dimension(-1, 30));
-        side_bar.setPreferredSize(new Dimension(100, -1));
+        side_bar.setPreferredSize(new Dimension(150, -1));
         delete_zone.setPreferredSize(new Dimension(-1, 55));
         back_button.setPreferredSize(new Dimension(75, -1));
     }
 
+    /**
+     * Populates the person list
+     * @param occupants a Vector of Person objects to populate the list with
+     */
     public void populatePersonList(Vector<Person> occupants)
     {
         DefaultListModel<Person> lm = new DefaultListModel<>();
@@ -97,34 +106,58 @@ public class InfoView extends JPanel {
         side_bar_list.setModel(lm);
     }
 
+    /**
+     * Returns the top_bar
+     * @return the top_bar JPanel
+     */
     public JPanel getTop_bar() {
         return top_bar;
     }
 
+    /**
+     * Returns the body
+     * @return the body JPanel
+     */
     public JPanel getBody() {
         return body;
     }
 
+    /**
+     * Returns the side_bar
+     * @return the side_bar JPanel
+     */
     public JPanel getSide_bar() {
         return side_bar;
     }
 
+    /**
+     * Returns the side_bar_list
+     * @return a JList of Person objects
+     */
     public JList<Person> getSide_bar_list() {
         return side_bar_list;
     }
 
+    /**
+     * Returns the delete_zone
+     * @return the delete_zone JPanel
+     */
     public JPanel getDelete_zone() {
         return delete_zone;
     }
 
-    public JLabel getDel_zone_text() {
-        return del_zone_text;
-    }
-
+    /**
+     * Returns the back button
+     * @return a JButton
+     */
     public JButton getBack_button() {
         return back_button;
     }
 
+    /**
+     * Returns the info panel
+     * @return the info panel JList
+     */
     public JList getInfoPanel() {
         return info;
     }

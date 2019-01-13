@@ -8,10 +8,15 @@ public class Teacher extends Person implements Employee {
     private int grade;
     private String certif;
 
-    /** Teacher default constructor */
-    Teacher()
+    /**
+     * Constructor for the teacher -- automatically designates this person as "Teaher"
+     * @param name the name of the teacher
+     * @param age the age of the teacher
+     * @param phone the phone number of the teacher
+     */
+    Teacher(String name, int age, long phone)
     {
-        super();
+        super(name, age, "Teacher", phone);
     }
 
     /**

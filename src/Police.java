@@ -4,18 +4,14 @@
  * implementation of Employee
  */
 public class Police extends Person implements Employee {
-    /**
-     * Person default constructor
-     *
-     * @param name
-     * @param age
-     * @param designation
-     * @param phone
-     */
-    public Police(String name, int age, String designation, int phone) {
-        super(name, age, designation, phone);
-    }
 
+    /**
+     * Consructor of Police officer, with automatic "Police Officer" designation
+     * @param name name of the officer
+     * @param age age of the officer
+     * @param role role of the officer
+     * @param phone phone number of the officer
+     */
     public Police(String name, int age, Role role, long phone)
     {
         super(name, age, "Police Officer", phone);

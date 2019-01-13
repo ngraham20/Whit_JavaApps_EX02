@@ -69,19 +69,31 @@ public abstract class Person extends JComponent {
         this.phone = phone;
     }
 
+    /**
+     * Returns the designation of the person object
+     * @return the String containing the person's designation
+     */
     String getDesignation()
     {
         return this.designation;
     }
 
+    /**
+     * Sets the designation of the person
+     * @param designation designation of the person
+     */
     public void setDesignation(String designation)
     {
         this.designation = designation;
     }
 
+    /**
+     * The string representation of the Person object is its name and its designation
+     * @return "{NAME}: {DESIGNATION}"
+     */
     @Override
     public String toString()
     {
-        return this.name;
+        return this.name + ": " + this.designation;
     }
 }

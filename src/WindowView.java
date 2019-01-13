@@ -4,19 +4,12 @@
  */
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.TooManyListenersException;
 import java.util.Vector;
 
@@ -45,6 +38,9 @@ public class WindowView extends JFrame {
         WindowView mainWindow = new WindowView();
     }
 
+    /**
+     * Default Constructor
+     */
     private WindowView()
     {
         super();
@@ -70,6 +66,7 @@ public class WindowView extends JFrame {
         eventListeners();
     }
 
+    /** Populates the window with some data to test and see */
     private void testScrolls()
     {
         // --- citizens of a building ---
@@ -99,6 +96,7 @@ public class WindowView extends JFrame {
         citizens.add(new Kid("Thomas", 9));
         citizens.add(new Kid("Nate", 3));
         citizens.add(new Police("Bruce", 35, Police.Role.Sargent, 4083902198L));
+        citizens.add(new Teacher("Donna", 29, 4086459270L));
 
         //infoView.populatePersonList(citizens);
 
@@ -118,6 +116,7 @@ public class WindowView extends JFrame {
 
     }
 
+    /** Triggers all of the event listeners in the View from centralized source */
     private void eventListeners()
     {
         // --- INFO VIEW BEGIN ---
@@ -297,17 +296,18 @@ public class WindowView extends JFrame {
 
                         infoView.getInfoPanel().setModel(iList);
 
-                        DefaultListModel<Person> pList = new DefaultListModel<>();
-
-                        if (building.getOccupants() != null)
-                        {
-                            for(Person p : building.getOccupants())
-                            {
-                                pList.addElement(p);
-                            }
-                        }
-
-                        infoView.getSide_bar_list().setModel(pList);
+//                        DefaultListModel<Person> pList = new DefaultListModel<>();
+//
+//                        if (building.getOccupants() != null)
+//                        {
+//                            for(Person p : building.getOccupants())
+//                            {
+//                                pList.addElement(p);
+//                            }
+//                        }
+//
+//                        infoView.getSide_bar_list().setModel(pList);
+                        infoView.populatePersonList(building.getOccupants());
                     }
                 }
             }
@@ -362,15 +362,14 @@ public class WindowView extends JFrame {
         // --- CITY VIEW END ---
     }
 
+    /**
+     * Sets the current card view
+     * @param view the view to switch to
+     */
     void setView(String view)
     {
         this.previousView = currentView;
         this.layout.show(cards, view);
         this.currentView = view;
-    }
-
-    void init()
-    {
-        controller.createCity();
     }
 }

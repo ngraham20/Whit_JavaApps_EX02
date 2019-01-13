@@ -10,6 +10,7 @@
  */
 public class GenericPerson extends Person {
 
+    /** Default constructor */
     GenericPerson()
     {
 
